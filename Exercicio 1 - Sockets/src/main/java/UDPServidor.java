@@ -1,12 +1,3 @@
-/*
- * Servidor.java
- *
- * Sistemas Distribuídos/UTFPR  Prof. Cesar Augusto Tacla
- *
- * Servidor ECHO: fica em aguardo de solicitação de algum cliente. Quando recebe
- * simplesmente devolve a mensagem. Funcionamento: tiro unico
- */
-
 import java.net.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -22,14 +13,15 @@ public class UDPServidor{
     public static void main(String args[]) {
         DatagramSocket s = null;
         try {
-                s = new DatagramSocket(6789); // cria um socket UDP
+            // cria um socket UDP
+            s = new DatagramSocket(6789);
 
             while(true) {
 
                 byte[] buffer = new byte[100];
 
                 System.out.println("\n\n*** Servidor aguardando request");
-                // cria datagrama para recepcionar solicitação do cliente
+                // cria datagrama para recepcionar solicitaï¿½ï¿½o do cliente
                 DatagramPacket req = new DatagramPacket(buffer, buffer.length);
                 s.receive(req);
                 System.out.println("*** Request recebido de: " + req.getAddress() + ":" + req.getPort());

@@ -1,18 +1,9 @@
-/*
- * Cliente.java
- *
- * Sistemas Distribuídos/UTFPR  Prof. Cesar Augusto Tacla
- *
- * Argumentos: <mensage> <HostIP>
- * Ex. java Cliente 127.0.0.1 6789 "mensagem teste"
- * O servidor devolve a msg (eco)
- */
 import java.net.*;
 import java.io.*;
 
 public class UDPCliente {
 
-    public static String msg="Mensagem de teste enviada pelo cliente";
+    public static String msg="Mensagem de teste enviada pelo cliente 12312312";
 
     /**
      * @author wbreda
@@ -48,7 +39,7 @@ public class UDPCliente {
                     new String(resp.getData(),0,resp.getLength()));
             
         } catch (SocketException e) {
-            // timeout, erro na criação
+            // timeout, erro na criaï¿½ï¿½o
             System.out.println("! Erro socket: " + e.getMessage());
         } catch (IOException e) {
             System.out.println("! Erro envio/recepcao do pacote: " + e.getMessage());
