@@ -1,8 +1,8 @@
 package br.com.sistemaescolar.domain.user;
 
 public enum UserRole {
-    ADMIN("admin"),
-    USER("user");
+    ADMIN("ADMIN"),
+    USER("USER");
 
     private String role;
 

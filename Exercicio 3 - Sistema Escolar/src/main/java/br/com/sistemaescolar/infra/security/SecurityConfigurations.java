@@ -1,5 +1,6 @@
 package br.com.sistemaescolar.infra.security;
 
+import br.com.sistemaescolar.domain.user.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,13 +27,22 @@ public class SecurityConfigurations {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/register").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/product").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/aluno").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/aluno").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/disciplina").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/disciplina").hasRole("ADMIN")
-                        .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll() // Permite acesso ao Swagger UI
+                        .requestMatchers(HttpMethod.POST, "/auth/register").hasRole(UserRole.ADMIN.getRole())
+
+                        .requestMatchers(HttpMethod.POST, "/aluno").hasRole(UserRole.ADMIN.getRole())
+                        .requestMatchers(HttpMethod.GET, "/aluno").hasRole(UserRole.ADMIN.getRole())
+
+                        .requestMatchers(HttpMethod.POST, "/disciplina").hasRole(UserRole.ADMIN.getRole())
+                        .requestMatchers(HttpMethod.GET, "/disciplina").hasRole(UserRole.ADMIN.getRole())
+
+                        .requestMatchers(HttpMethod.GET, "/nota").hasRole(UserRole.ADMIN.getRole())
+                        .requestMatchers(HttpMethod.POST, "/nota").hasRole(UserRole.ADMIN.getRole())
+                        .requestMatchers(HttpMethod.DELETE, "/nota/delete").hasRole(UserRole.ADMIN.getRole())
+                        .requestMatchers(HttpMethod.GET, "/nota/all").hasRole(UserRole.ADMIN.getRole())
+
+                        .requestMatchers(HttpMethod.GET, "/historico").permitAll()
+
+                        .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
@@ -48,5 +58,7 @@ public class SecurityConfigurations {
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
+
 
 }

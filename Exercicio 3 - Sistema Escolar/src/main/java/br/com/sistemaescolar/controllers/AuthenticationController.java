@@ -6,6 +6,7 @@ import br.com.sistemaescolar.domain.user.RegisterDTO;
 import br.com.sistemaescolar.domain.user.User;
 import br.com.sistemaescolar.infra.security.TokenService;
 import br.com.sistemaescolar.repositories.UserRepository;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name = "Autenticação", description = "API's para autenticação no sistema")
 @RestController
 @RequestMapping("auth")
 public class AuthenticationController {

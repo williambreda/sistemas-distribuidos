@@ -4,6 +4,8 @@ import br.com.sistemaescolar.domain.nota.Nota;
 import br.com.sistemaescolar.domain.nota.NotaRequestDTO;
 import br.com.sistemaescolar.domain.nota.NotaResponseDTO;
 import br.com.sistemaescolar.repositories.NotaRepository;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@SecurityRequirement(name = "Bearer Authentication")
+@Tag(name = "Notas", description = "API's para cadastro de notas")
 @RestController()
 @RequestMapping("nota")
 public class NotaController {
